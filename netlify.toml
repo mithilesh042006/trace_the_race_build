@@ -1,4 +1,20 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+# SPA fallback
 [[redirects]]
-from = "/*"
-to = "/index.html"
-status = 200
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# API function redirect
+[[redirects]]
+  from = "/api/registration-count"
+  to = "/.netlify/functions/get-registration-count"
+  status = 200
+  force = true
